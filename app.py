@@ -6,12 +6,14 @@ Main Flask application with WebSocket support for real-time data streaming
 
 import os
 import json
+import socket
 import time
 import threading
 from datetime import datetime
 from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
+from pythonosc import udp_client
 
 from device_manager import BrainBitManager
 from data_storage import DataStorage
@@ -22,6 +24,11 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key')
 socketio = SocketIO(app, cors_allowed_origins="*")
+
+# OSC client for Max
+UDP_IP = "127.0.0.1"   # Max is running on same machine
+UDP_PORT = 5005
+osc_client = udp_client.SimpleUDPClient(UDP_IP, UDP_PORT)
 
 # Initialize components
 device_manager = BrainBitManager()
@@ -180,6 +187,13 @@ def handle_live_data_chunk(data_chunk):
     }
     
     socketio.emit('live_data', simplified_data)
+
+    # Send data to Max in OSC format
+    eeg_data = simplified_data.get('eeg_data', {})
+    osc_client.send_message("/O1", eeg_data.get('O1'))
+    osc_client.send_message("/O2", eeg_data.get('O2'))
+    osc_client.send_message("/T3", eeg_data.get('T3'))
+    osc_client.send_message("/T4", eeg_data.get('T4'))
 
 def handle_storage_data_chunk(data_chunk):
     """Handle data for storage (only when recording)"""
