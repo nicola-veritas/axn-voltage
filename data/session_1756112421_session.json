@@ -1,0 +1,276 @@
+{
+  "start_time": "2025-08-25T09:00:21.599361",
+  "device_info": {
+    "name": "BrainBit",
+    "address": "D7D0944A-160C-A534-607F-DA77C6967F23",
+    "connected": true,
+    "battery_level": 85,
+    "signal_quality": "good"
+  },
+  "session_id": "session_1756112421",
+  "session_info": {
+    "type": "psychotherapy"
+  },
+  "chunks": [
+    {
+      "chunk_id": 1,
+      "filename": "session_1756112421_chunk_001.json",
+      "start_time": "2025-08-25T09:00:21.599681",
+      "end_time": "2025-08-25T09:02:05.936694",
+      "sample_count": 1001,
+      "file_size": 309272
+    },
+    {
+      "chunk_id": 2,
+      "filename": "session_1756112421_chunk_002.json",
+      "start_time": "2025-08-25T09:02:05.936779",
+      "end_time": "2025-08-25T09:03:50.251120",
+      "sample_count": 1001,
+      "file_size": 309218
+    },
+    {
+      "chunk_id": 3,
+      "filename": "session_1756112421_chunk_003.json",
+      "start_time": "2025-08-25T09:03:50.251234",
+      "end_time": "2025-08-25T09:05:34.553680",
+      "sample_count": 1001,
+      "file_size": 309232
+    },
+    {
+      "chunk_id": 4,
+      "filename": "session_1756112421_chunk_004.json",
+      "start_time": "2025-08-25T09:05:34.553797",
+      "end_time": "2025-08-25T09:07:18.903057",
+      "sample_count": 1001,
+      "file_size": 309347
+    },
+    {
+      "chunk_id": 5,
+      "filename": "session_1756112421_chunk_005.json",
+      "start_time": "2025-08-25T09:07:18.903166",
+      "end_time": "2025-08-25T09:09:03.277725",
+      "sample_count": 1001,
+      "file_size": 309321
+    },
+    {
+      "chunk_id": 6,
+      "filename": "session_1756112421_chunk_006.json",
+      "start_time": "2025-08-25T09:09:03.277817",
+      "end_time": "2025-08-25T09:10:47.505637",
+      "sample_count": 1001,
+      "file_size": 309257
+    },
+    {
+      "chunk_id": 7,
+      "filename": "session_1756112421_chunk_007.json",
+      "start_time": "2025-08-25T09:10:47.505805",
+      "end_time": "2025-08-25T09:12:31.785212",
+      "sample_count": 1001,
+      "file_size": 309223
+    },
+    {
+      "chunk_id": 8,
+      "filename": "session_1756112421_chunk_008.json",
+      "start_time": "2025-08-25T09:12:31.785314",
+      "end_time": "2025-08-25T09:14:16.134278",
+      "sample_count": 1001,
+      "file_size": 309298
+    },
+    {
+      "chunk_id": 9,
+      "filename": "session_1756112421_chunk_009.json",
+      "start_time": "2025-08-25T09:14:16.134372",
+      "end_time": "2025-08-25T09:16:02.935119",
+      "sample_count": 1001,
+      "file_size": 309216
+    },
+    {
+      "chunk_id": 10,
+      "filename": "session_1756112421_chunk_010.json",
+      "start_time": "2025-08-25T09:16:02.935206",
+      "end_time": "2025-08-25T09:17:50.485194",
+      "sample_count": 1001,
+      "file_size": 309242
+    },
+    {
+      "chunk_id": 11,
+      "filename": "session_1756112421_chunk_011.json",
+      "start_time": "2025-08-25T09:17:50.485307",
+      "end_time": "2025-08-25T09:19:37.882966",
+      "sample_count": 1001,
+      "file_size": 309292
+    },
+    {
+      "chunk_id": 12,
+      "filename": "session_1756112421_chunk_012.json",
+      "start_time": "2025-08-25T09:19:37.883069",
+      "end_time": "2025-08-25T09:21:25.386611",
+      "sample_count": 1001,
+      "file_size": 309271
+    },
+    {
+      "chunk_id": 13,
+      "filename": "session_1756112421_chunk_013.json",
+      "start_time": "2025-08-25T09:21:25.386700",
+      "end_time": "2025-08-25T09:23:12.809642",
+      "sample_count": 1001,
+      "file_size": 309319
+    },
+    {
+      "chunk_id": 14,
+      "filename": "session_1756112421_chunk_014.json",
+      "start_time": "2025-08-25T09:23:12.809758",
+      "end_time": "2025-08-25T09:25:00.390858",
+      "sample_count": 1001,
+      "file_size": 309215
+    },
+    {
+      "chunk_id": 15,
+      "filename": "session_1756112421_chunk_015.json",
+      "start_time": "2025-08-25T09:25:00.390927",
+      "end_time": "2025-08-25T09:26:47.817924",
+      "sample_count": 1001,
+      "file_size": 309188
+    },
+    {
+      "chunk_id": 16,
+      "filename": "session_1756112421_chunk_016.json",
+      "start_time": "2025-08-25T09:26:47.818051",
+      "end_time": "2025-08-25T09:28:35.524543",
+      "sample_count": 1001,
+      "file_size": 309234
+    },
+    {
+      "chunk_id": 17,
+      "filename": "session_1756112421_chunk_017.json",
+      "start_time": "2025-08-25T09:28:35.524596",
+      "end_time": "2025-08-25T09:30:23.145451",
+      "sample_count": 1001,
+      "file_size": 309240
+    },
+    {
+      "chunk_id": 18,
+      "filename": "session_1756112421_chunk_018.json",
+      "start_time": "2025-08-25T09:30:23.145533",
+      "end_time": "2025-08-25T09:32:10.612168",
+      "sample_count": 1001,
+      "file_size": 309264
+    },
+    {
+      "chunk_id": 19,
+      "filename": "session_1756112421_chunk_019.json",
+      "start_time": "2025-08-25T09:32:10.612249",
+      "end_time": "2025-08-25T09:33:58.099669",
+      "sample_count": 1001,
+      "file_size": 309304
+    },
+    {
+      "chunk_id": 20,
+      "filename": "session_1756112421_chunk_020.json",
+      "start_time": "2025-08-25T09:33:58.099790",
+      "end_time": "2025-08-25T09:35:45.575774",
+      "sample_count": 1001,
+      "file_size": 309240
+    },
+    {
+      "chunk_id": 21,
+      "filename": "session_1756112421_chunk_021.json",
+      "start_time": "2025-08-25T09:35:45.575901",
+      "end_time": "2025-08-25T09:37:33.046862",
+      "sample_count": 1001,
+      "file_size": 309239
+    },
+    {
+      "chunk_id": 22,
+      "filename": "session_1756112421_chunk_022.json",
+      "start_time": "2025-08-25T09:37:33.046969",
+      "end_time": "2025-08-25T09:39:20.408868",
+      "sample_count": 1001,
+      "file_size": 309260
+    },
+    {
+      "chunk_id": 23,
+      "filename": "session_1756112421_chunk_023.json",
+      "start_time": "2025-08-25T09:39:20.408943",
+      "end_time": "2025-08-25T09:41:05.126597",
+      "sample_count": 1001,
+      "file_size": 309240
+    },
+    {
+      "chunk_id": 24,
+      "filename": "session_1756112421_chunk_024.json",
+      "start_time": "2025-08-25T09:41:05.126672",
+      "end_time": "2025-08-25T09:42:49.477809",
+      "sample_count": 1001,
+      "file_size": 309302
+    },
+    {
+      "chunk_id": 25,
+      "filename": "session_1756112421_chunk_025.json",
+      "start_time": "2025-08-25T09:42:49.477916",
+      "end_time": "2025-08-25T09:44:33.722912",
+      "sample_count": 1001,
+      "file_size": 309262
+    },
+    {
+      "chunk_id": 26,
+      "filename": "session_1756112421_chunk_026.json",
+      "start_time": "2025-08-25T09:44:33.723019",
+      "end_time": "2025-08-25T09:46:21.090070",
+      "sample_count": 1001,
+      "file_size": 309272
+    },
+    {
+      "chunk_id": 27,
+      "filename": "session_1756112421_chunk_027.json",
+      "start_time": "2025-08-25T09:46:21.090124",
+      "end_time": "2025-08-25T09:48:08.492303",
+      "sample_count": 1001,
+      "file_size": 309339
+    },
+    {
+      "chunk_id": 28,
+      "filename": "session_1756112421_chunk_028.json",
+      "start_time": "2025-08-25T09:48:08.492388",
+      "end_time": "2025-08-25T09:49:56.006680",
+      "sample_count": 1001,
+      "file_size": 309191
+    },
+    {
+      "chunk_id": 29,
+      "filename": "session_1756112421_chunk_029.json",
+      "start_time": "2025-08-25T09:49:56.006810",
+      "end_time": "2025-08-25T09:51:43.516185",
+      "sample_count": 1001,
+      "file_size": 309176
+    },
+    {
+      "chunk_id": 30,
+      "filename": "session_1756112421_chunk_030.json",
+      "start_time": "2025-08-25T09:51:43.516272",
+      "end_time": "2025-08-25T09:53:30.822727",
+      "sample_count": 1001,
+      "file_size": 309296
+    },
+    {
+      "chunk_id": 31,
+      "filename": "session_1756112421_chunk_031.json",
+      "start_time": "2025-08-25T09:53:30.822834",
+      "end_time": "2025-08-25T09:55:18.203692",
+      "sample_count": 1001,
+      "file_size": 309356
+    },
+    {
+      "chunk_id": 32,
+      "filename": "session_1756112421_chunk_032.json",
+      "start_time": "2025-08-25T09:55:18.203801",
+      "end_time": "2025-08-25T09:56:49.283760",
+      "sample_count": 862,
+      "file_size": 266313
+    }
+  ],
+  "end_time": "2025-08-25T09:56:49.283884",
+  "total_chunks": 32,
+  "total_samples": 31893,
+  "duration_seconds": 3387.684523
+}

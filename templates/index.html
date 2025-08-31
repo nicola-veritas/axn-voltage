@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuro Notes - BrainBit EEG Recorder</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .status-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #dee2e6;
+        }
+        
+        .status-card.connected {
+            border-left-color: #28a745;
+        }
+        
+        .status-card.recording {
+            border-left-color: #dc3545;
+        }
+        
+        .status-card.battery {
+            border-left-color: #ffc107;
+        }
+        
+        .status-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+        
+        .status-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .status-value.connected {
+            color: #28a745;
+        }
+        
+        .status-value.disconnected {
+            color: #6c757d;
+        }
+        
+        .status-value.recording {
+            color: #dc3545;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 300px;
+            position: relative;
+        }
+        
+        .chart-wrapper {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+        
+        .chart-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .logs {
+            background: #212529;
+            color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+        
+        .log-entry.error {
+            color: #ff6b6b;
+        }
+        
+        .log-entry.success {
+            color: #51cf66;
+        }
+        
+        .log-entry.info {
+            color: #74c0fc;
+        }
+        
+        .device-list {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .device-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background: white;
+        }
+        
+        .device-info {
+            flex: 1;
+        }
+        
+        .device-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .device-address {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .status-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .chart-container {
+                height: 250px;
+                padding: 15px;
+            }
+            
+            .chart-wrapper {
+                height: 180px;
+            }
+            
+            .logs {
+                height: 150px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .status-card {
+                padding: 15px;
+            }
+            
+            .status-value {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Neuro Notes</h1>
+            <p>BrainBit EEG Data Recorder</p>
+        </div>
+        
+        <div class="content">
+            <!-- Status Cards -->
+            <div class="status-grid">
+                <div class="status-card" id="connection-status">
+                    <div class="status-title">Device Connection</div>
+                    <div class="status-value disconnected" id="connection-value">Disconnected</div>
+                </div>
+                
+                <div class="status-card" id="recording-status">
+                    <div class="status-title">Recording Status</div>
+                    <div class="status-value" id="recording-value">Stopped</div>
+                </div>
+                
+                <div class="status-card battery" id="battery-status">
+                    <div class="status-title">Battery Level</div>
+                    <div class="status-value" id="battery-value">--</div>
+                </div>
+                
+                <div class="status-card" id="signal-status">
+                    <div class="status-title">Signal Quality</div>
+                    <div class="status-value" id="signal-value">--</div>
+                </div>
+            </div>
+            
+            <!-- Control Buttons -->
+            <div class="controls">
+                <button class="btn btn-primary" id="scan-btn" onclick="scanDevices()">
+                    <span id="scan-text">Scan for Devices</span>
+                    <span id="scan-spinner" class="spinner hidden"></span>
+                </button>
+                
+                <button class="btn btn-success" id="connect-btn" onclick="connectDevice()" disabled>
+                    Connect Device
+                </button>
+                
+                <button class="btn btn-danger" id="disconnect-btn" onclick="disconnectDevice()" disabled>
+                    Disconnect Device
+                </button>
+                
+                <button class="btn btn-success" id="start-record-btn" onclick="startRecording()" disabled>
+                    Start Recording
+                </button>
+                
+                <button class="btn btn-danger" id="stop-record-btn" onclick="stopRecording()" disabled>
+                    Stop Recording
+                </button>
+            </div>
+            
+            <!-- Device List -->
+            <div class="device-list hidden" id="device-list">
+                <div class="chart-title">Available Devices</div>
+                <div id="devices-container"></div>
+            </div>
+            
+            <!-- Live Data Visualization -->
+            <div class="chart-container">
+                <div class="chart-title">Live EEG Signal - 4 Channels</div>
+                <div class="chart-wrapper">
+                    <canvas id="eeg-chart"></canvas>
+                </div>
+            </div>
+            
+
+            
+            <!-- Event Logs -->
+            <div class="chart-container">
+                <div class="chart-title">Event Log</div>
+                <div class="logs" id="logs"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket connection
+        const socket = io();
+        
+        // Global state
+        let selectedDevice = null;
+        let isConnected = false;
+        let isRecording = false;
+        let eegChart = null;
+        let signalData = {
+            O1: [],
+            O2: [],
+            T3: [],
+            T4: []
+        };
+        
+        // Initialize chart with 4 separate channels
+        function initChart() {
+            const ctx = document.getElementById('eeg-chart').getContext('2d');
+            
+            eegChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'O1 (Left Occipital)',
+                            data: [],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0,
+                            pointHoverRadius: 0
+                        },
+                        {
+                            label: 'O2 (Right Occipital)',
+                            data: [],
+                            borderColor: '#f093fb',
+                            backgroundColor: 'rgba(240, 147, 251, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0,
+                            pointHoverRadius: 0
+                        },
+                        {
+                            label: 'T3 (Left Temporal)',
+                            data: [],
+                            borderColor: '#4facfe',
+                            backgroundColor: 'rgba(79, 172, 254, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0,
+                            pointHoverRadius: 0
+                        },
+                        {
+                            label: 'T4 (Right Temporal)',
+                            data: [],
+                            borderColor: '#43e97b',
+                            backgroundColor: 'rgba(67, 233, 123, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0,
+                            pointHoverRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false
+                    },
+                    scales: {
+                        x: {
+                            display: false,
+                            type: 'linear'
+                        },
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: '#e0e0e0'
+                            },
+                            ticks: {
+                                maxTicksLimit: 6
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 0
+                    },
+                    elements: {
+                        point: {
+                            radius: 0
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Logging functions
+        function addLog(message, type = 'info') {
+            const logs = document.getElementById('logs');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+            
+            logs.appendChild(entry);
+            logs.scrollTop = logs.scrollHeight;
+            
+            // Keep only last 100 log entries
+            while (logs.children.length > 100) {
+                logs.removeChild(logs.firstChild);
+            }
+        }
+        
+        // Device scanning
+        function scanDevices() {
+            const scanBtn = document.getElementById('scan-btn');
+            const scanText = document.getElementById('scan-text');
+            const scanSpinner = document.getElementById('scan-spinner');
+            
+            scanBtn.disabled = true;
+            scanText.classList.add('hidden');
+            scanSpinner.classList.remove('hidden');
+            
+            addLog('Scanning for BrainBit devices...', 'info');
+            socket.emit('scan_devices');
+        }
+        
+        // Device connection
+        function connectDevice() {
+            if (!selectedDevice) {
+                addLog('No device selected', 'error');
+                return;
+            }
+            
+            addLog(`Connecting to ${selectedDevice.name}...`, 'info');
+            socket.emit('connect_device', { device_id: selectedDevice.id });
+        }
+        
+        function disconnectDevice() {
+            addLog('Disconnecting from device...', 'info');
+            socket.emit('disconnect_device');
+        }
+        
+        // Recording controls
+        function startRecording() {
+            if (!isConnected) {
+                addLog('No device connected', 'error');
+                return;
+            }
+            
+            addLog('Starting EEG recording...', 'info');
+            socket.emit('start_recording');
+        }
+        
+        function stopRecording() {
+            if (!isRecording) {
+                addLog('Not currently recording', 'error');
+                return;
+            }
+            
+            addLog('Stopping EEG recording...', 'info');
+            socket.emit('stop_recording');
+        }
+        
+        // Update UI elements
+        function updateConnectionStatus(connected, deviceInfo = null) {
+            isConnected = connected;
+            
+            const statusCard = document.getElementById('connection-status');
+            const statusValue = document.getElementById('connection-value');
+            const connectBtn = document.getElementById('connect-btn');
+            const disconnectBtn = document.getElementById('disconnect-btn');
+            const startRecordBtn = document.getElementById('start-record-btn');
+            
+            if (connected) {
+                statusCard.classList.add('connected');
+                statusValue.textContent = 'Connected';
+                statusValue.className = 'status-value connected';
+                
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+                startRecordBtn.disabled = false;
+                
+                if (deviceInfo) {
+                    updateBatteryLevel(deviceInfo.battery_level);
+                    updateSignalQuality(deviceInfo.signal_quality);
+                }
+            } else {
+                statusCard.classList.remove('connected');
+                statusValue.textContent = 'Disconnected';
+                statusValue.className = 'status-value disconnected';
+                
+                connectBtn.disabled = !selectedDevice;
+                disconnectBtn.disabled = true;
+                startRecordBtn.disabled = true;
+                
+                updateBatteryLevel(null);
+                updateSignalQuality(null);
+            }
+        }
+        
+        function updateRecordingStatus(recording) {
+            isRecording = recording;
+            
+            const statusCard = document.getElementById('recording-status');
+            const statusValue = document.getElementById('recording-value');
+            const startBtn = document.getElementById('start-record-btn');
+            const stopBtn = document.getElementById('stop-record-btn');
+            
+            if (recording) {
+                statusCard.classList.add('recording');
+                statusValue.textContent = 'Recording';
+                statusValue.className = 'status-value recording';
+                
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            } else {
+                statusCard.classList.remove('recording');
+                statusValue.textContent = 'Stopped';
+                statusValue.className = 'status-value';
+                
+                startBtn.disabled = !isConnected;
+                stopBtn.disabled = true;
+            }
+        }
+        
+        function updateBatteryLevel(level) {
+            const batteryValue = document.getElementById('battery-value');
+            batteryValue.textContent = level !== null ? `${level}%` : '--';
+        }
+        
+        function updateSignalQuality(quality) {
+            const signalValue = document.getElementById('signal-value');
+            signalValue.textContent = quality || '--';
+        }
+        
+        function updateChart(data) {
+            if (!eegChart) return;
+            
+            // Handle both old array format and new object format
+            let channelValues = {};
+            
+            if (data.eeg_data && typeof data.eeg_data === 'object') {
+                if (Array.isArray(data.eeg_data)) {
+                    // Old format: array with 4 values [O1, O2, T3, T4]
+                    channelValues = {
+                        O1: data.eeg_data[0] || 0,
+                        O2: data.eeg_data[1] || 0,
+                        T3: data.eeg_data[2] || 0,
+                        T4: data.eeg_data[3] || 0
+                    };
+                } else {
+                    // New format: object with named channels
+                    channelValues = {
+                        O1: data.eeg_data.O1 || 0,
+                        O2: data.eeg_data.O2 || 0,
+                        T3: data.eeg_data.T3 || 0,
+                        T4: data.eeg_data.T4 || 0
+                    };
+                }
+            } else {
+                // No data available - return early
+                return;
+            }
+            
+            // Add new data points for each channel
+            Object.keys(channelValues).forEach(channel => {
+                signalData[channel].push(channelValues[channel]);
+            });
+            
+            // Keep only last 100 points for better visibility
+            const maxPoints = 100;
+            Object.keys(signalData).forEach(channel => {
+                if (signalData[channel].length > maxPoints) {
+                    signalData[channel].shift();
+                }
+            });
+            
+            // Update chart data
+            const labels = signalData.O1.map((_, i) => i);
+            
+            eegChart.data.labels = labels;
+            eegChart.data.datasets[0].data = [...signalData.O1]; // O1
+            eegChart.data.datasets[1].data = [...signalData.O2]; // O2
+            eegChart.data.datasets[2].data = [...signalData.T3]; // T3
+            eegChart.data.datasets[3].data = [...signalData.T4]; // T4
+            
+            // Update without animation for smooth real-time display
+            eegChart.update('none');
+        }
+        
+        // Socket event handlers
+        socket.on('connect', function() {
+            addLog('Connected to server', 'success');
+        });
+        
+        socket.on('disconnect', function() {
+            addLog('Disconnected from server', 'error');
+        });
+        
+        socket.on('devices_found', function(data) {
+            const scanBtn = document.getElementById('scan-btn');
+            const scanText = document.getElementById('scan-text');
+            const scanSpinner = document.getElementById('scan-spinner');
+            const deviceList = document.getElementById('device-list');
+            const devicesContainer = document.getElementById('devices-container');
+            
+            // Reset scan button
+            scanBtn.disabled = false;
+            scanText.classList.remove('hidden');
+            scanSpinner.classList.add('hidden');
+            
+            // Show device list
+            devicesContainer.innerHTML = '';
+            
+            if (data.devices.length === 0) {
+                addLog('No BrainBit devices found', 'error');
+                deviceList.classList.add('hidden');
+                return;
+            }
+            
+            addLog(`Found ${data.devices.length} device(s)`, 'success');
+            deviceList.classList.remove('hidden');
+            
+            data.devices.forEach(device => {
+                const deviceItem = document.createElement('div');
+                deviceItem.className = 'device-item';
+                deviceItem.innerHTML = `
+                    <div class="device-info">
+                        <div class="device-name">${device.name}</div>
+                        <div class="device-address">${device.address}</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="selectDevice('${device.id}', '${device.name}')">
+                        Select
+                    </button>
+                `;
+                devicesContainer.appendChild(deviceItem);
+            });
+        });
+        
+        socket.on('device_connected', function(data) {
+            addLog(`Connected to ${data.device_info.name}`, 'success');
+            updateConnectionStatus(true, data.device_info);
+        });
+        
+        socket.on('device_disconnected', function() {
+            addLog('Device disconnected', 'info');
+            updateConnectionStatus(false);
+            updateRecordingStatus(false);
+        });
+        
+        socket.on('recording_started', function(data) {
+            addLog(`Recording started: ${data.session_info.session_id}`, 'success');
+            updateRecordingStatus(true);
+        });
+        
+        socket.on('recording_stopped', function(data) {
+            addLog(`Recording stopped. Saved to: ${data.session_file}`, 'success');
+            updateRecordingStatus(false);
+        });
+        
+        socket.on('live_data', function(data) {
+            updateChart(data);
+            
+            
+            
+            if (data.battery_level !== undefined) {
+                updateBatteryLevel(data.battery_level);
+            }
+            if (data.signal_quality !== undefined) {
+                updateSignalQuality(data.signal_quality);
+            }
+        });
+        
+        socket.on('device_status', function(data) {
+            if (data.battery_level !== undefined) {
+                updateBatteryLevel(data.battery_level);
+            }
+            if (data.signal_quality !== undefined) {
+                updateSignalQuality(data.signal_quality);
+            }
+        });
+        
+        socket.on('error', function(data) {
+            addLog(`Error: ${data.message}`, 'error');
+        });
+        
+        // Device selection
+        function selectDevice(deviceId, deviceName) {
+            selectedDevice = { id: deviceId, name: deviceName };
+            
+            // Update button states
+            const connectBtn = document.getElementById('connect-btn');
+            connectBtn.disabled = false;
+            
+            // Highlight selected device
+            const deviceItems = document.querySelectorAll('.device-item');
+            deviceItems.forEach(item => {
+                item.style.backgroundColor = '';
+                const button = item.querySelector('button');
+                button.textContent = 'Select';
+                button.className = 'btn btn-primary';
+            });
+            
+            const selectedItem = event.target.closest('.device-item');
+            selectedItem.style.backgroundColor = '#e7f3ff';
+            const selectedButton = selectedItem.querySelector('button');
+            selectedButton.textContent = 'Selected';
+            selectedButton.className = 'btn btn-success';
+            
+            addLog(`Selected device: ${deviceName}`, 'info');
+        }
+        
+
+        
+
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+            addLog('Neuro Notes application started', 'success');
+            
+            // Request initial status
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    updateConnectionStatus(data.device_connected, data.device_info);
+                    updateRecordingStatus(data.is_recording);
+                })
+                .catch(error => {
+                    addLog('Failed to get initial status', 'error');
+                });
+        });
+    </script>
+</body>
+</html>
