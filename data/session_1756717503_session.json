@@ -1,0 +1,236 @@
+{
+  "start_time": "2025-09-01T09:05:03.597285",
+  "device_info": {
+    "name": "BrainBit",
+    "address": "unknown",
+    "connected": true,
+    "battery_level": 85,
+    "signal_quality": "good"
+  },
+  "session_id": "session_1756717503",
+    "session_info": {
+      "type": "psychotherapy"
+    },
+  "chunks": [
+    {
+      "chunk_id": 1,
+      "filename": "session_1756717503_chunk_001.json",
+      "start_time": "2025-09-01T09:05:03.597285",
+      "end_time": "2025-09-01T09:06:48.426541",
+      "sample_count": 1001,
+      "file_size": 309320
+    },
+    {
+      "chunk_id": 2,
+      "filename": "session_1756717503_chunk_002.json",
+      "start_time": "2025-09-01T09:06:48.453689",
+      "end_time": "2025-09-01T09:08:33.211709",
+      "sample_count": 1001,
+      "file_size": 309237
+    },
+    {
+      "chunk_id": 3,
+      "filename": "session_1756717503_chunk_003.json",
+      "start_time": "2025-09-01T09:08:33.228049",
+      "end_time": "2025-09-01T09:10:18.125978",
+      "sample_count": 1001,
+      "file_size": 309259
+    },
+    {
+      "chunk_id": 4,
+      "filename": "session_1756717503_chunk_004.json",
+      "start_time": "2025-09-01T09:10:18.155868",
+      "end_time": "2025-09-01T09:12:02.998739",
+      "sample_count": 1001,
+      "file_size": 309217
+    },
+    {
+      "chunk_id": 5,
+      "filename": "session_1756717503_chunk_005.json",
+      "start_time": "2025-09-01T09:12:03.013987",
+      "end_time": "2025-09-01T09:13:48.016979",
+      "sample_count": 1001,
+      "file_size": 309299
+    },
+    {
+      "chunk_id": 6,
+      "filename": "session_1756717503_chunk_006.json",
+      "start_time": "2025-09-01T09:13:48.043952",
+      "end_time": "2025-09-01T09:15:32.922515",
+      "sample_count": 1001,
+      "file_size": 309265
+    },
+    {
+      "chunk_id": 7,
+      "filename": "session_1756717503_chunk_007.json",
+      "start_time": "2025-09-01T09:15:32.949706",
+      "end_time": "2025-09-01T09:17:17.857773",
+      "sample_count": 1001,
+      "file_size": 309261
+    },
+    {
+      "chunk_id": 8,
+      "filename": "session_1756717503_chunk_008.json",
+      "start_time": "2025-09-01T09:17:17.886946",
+      "end_time": "2025-09-01T09:19:02.813375",
+      "sample_count": 1001,
+      "file_size": 309317
+    },
+    {
+      "chunk_id": 9,
+      "filename": "session_1756717503_chunk_009.json",
+      "start_time": "2025-09-01T09:19:02.828614",
+      "end_time": "2025-09-01T09:20:47.743091",
+      "sample_count": 1001,
+      "file_size": 309263
+    },
+    {
+      "chunk_id": 10,
+      "filename": "session_1756717503_chunk_010.json",
+      "start_time": "2025-09-01T09:20:47.768946",
+      "end_time": "2025-09-01T09:22:32.600029",
+      "sample_count": 1001,
+      "file_size": 309268
+    },
+    {
+      "chunk_id": 11,
+      "filename": "session_1756717503_chunk_011.json",
+      "start_time": "2025-09-01T09:22:32.628290",
+      "end_time": "2025-09-01T09:24:18.639603",
+      "sample_count": 1001,
+      "file_size": 309249
+    },
+    {
+      "chunk_id": 12,
+      "filename": "session_1756717503_chunk_012.json",
+      "start_time": "2025-09-01T09:24:18.667509",
+      "end_time": "2025-09-01T09:26:07.178676",
+      "sample_count": 1001,
+      "file_size": 309198
+    },
+    {
+      "chunk_id": 13,
+      "filename": "session_1756717503_chunk_013.json",
+      "start_time": "2025-09-01T09:26:07.207137",
+      "end_time": "2025-09-01T09:27:55.520757",
+      "sample_count": 1001,
+      "file_size": 309241
+    },
+    {
+      "chunk_id": 14,
+      "filename": "session_1756717503_chunk_014.json",
+      "start_time": "2025-09-01T09:27:55.550494",
+      "end_time": "2025-09-01T09:29:40.404761",
+      "sample_count": 1001,
+      "file_size": 309185
+    },
+    {
+      "chunk_id": 15,
+      "filename": "session_1756717503_chunk_015.json",
+      "start_time": "2025-09-01T09:29:40.426460",
+      "end_time": "2025-09-01T09:31:25.323279",
+      "sample_count": 1001,
+      "file_size": 309269
+    },
+    {
+      "chunk_id": 16,
+      "filename": "session_1756717503_chunk_016.json",
+      "start_time": "2025-09-01T09:31:25.349549",
+      "end_time": "2025-09-01T09:33:10.234903",
+      "sample_count": 1001,
+      "file_size": 309160
+    },
+    {
+      "chunk_id": 17,
+      "filename": "session_1756717503_chunk_017.json",
+      "start_time": "2025-09-01T09:33:10.262653",
+      "end_time": "2025-09-01T09:34:55.552463",
+      "sample_count": 1001,
+      "file_size": 309257
+    },
+    {
+      "chunk_id": 18,
+      "filename": "session_1756717503_chunk_018.json",
+      "start_time": "2025-09-01T09:34:55.581049",
+      "end_time": "2025-09-01T09:36:40.504802",
+      "sample_count": 1001,
+      "file_size": 309304
+    },
+    {
+      "chunk_id": 19,
+      "filename": "session_1756717503_chunk_019.json",
+      "start_time": "2025-09-01T09:36:40.532884",
+      "end_time": "2025-09-01T09:38:25.440196",
+      "sample_count": 1001,
+      "file_size": 309258
+    },
+    {
+      "chunk_id": 20,
+      "filename": "session_1756717503_chunk_020.json",
+      "start_time": "2025-09-01T09:38:25.473389",
+      "end_time": "2025-09-01T09:40:10.332661",
+      "sample_count": 1001,
+      "file_size": 309193
+    },
+    {
+      "chunk_id": 21,
+      "filename": "session_1756717503_chunk_021.json",
+      "start_time": "2025-09-01T09:40:10.361173",
+      "end_time": "2025-09-01T09:41:55.310390",
+      "sample_count": 1001,
+      "file_size": 309246
+    },
+    {
+      "chunk_id": 22,
+      "filename": "session_1756717503_chunk_022.json",
+      "start_time": "2025-09-01T09:41:55.339913",
+      "end_time": "2025-09-01T09:43:40.277746",
+      "sample_count": 1001,
+      "file_size": 309254
+    },
+    {
+      "chunk_id": 23,
+      "filename": "session_1756717503_chunk_023.json",
+      "start_time": "2025-09-01T09:43:40.303846",
+      "end_time": "2025-09-01T09:45:25.214583",
+      "sample_count": 1001,
+      "file_size": 309160
+    },
+    {
+      "chunk_id": 24,
+      "filename": "session_1756717503_chunk_024.json",
+      "start_time": "2025-09-01T09:45:25.232884",
+      "end_time": "2025-09-01T09:47:11.240382",
+      "sample_count": 1001,
+      "file_size": 309275
+    },
+    {
+      "chunk_id": 25,
+      "filename": "session_1756717503_chunk_025.json",
+      "start_time": "2025-09-01T09:47:11.265210",
+      "end_time": "2025-09-01T09:48:58.826752",
+      "sample_count": 1001,
+      "file_size": 309274
+    },
+    {
+      "chunk_id": 26,
+      "filename": "session_1756717503_chunk_026.json",
+      "start_time": "2025-09-01T09:48:58.852651",
+      "end_time": "2025-09-01T09:50:43.767101",
+      "sample_count": 1001,
+      "file_size": 309190
+    },
+    {
+      "chunk_id": 27,
+      "filename": "session_1756717503_chunk_027.json",
+      "start_time": "2025-09-01T09:50:43.792939",
+      "end_time": "2025-09-01T09:52:28.681928",
+      "sample_count": 1001,
+      "file_size": 309275
+    }
+  ],
+  "end_time": "2025-09-01T09:52:28.681928",
+  "total_chunks": 27,
+  "total_samples": 27027,
+  "duration_seconds": 2845.084643
+}
