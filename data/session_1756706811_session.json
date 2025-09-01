@@ -1,0 +1,69 @@
+{
+  "start_time": "2025-09-01T06:06:51.632105",
+  "device_info": {
+    "name": "BrainBit",
+    "address": "D7D0944A-160C-A534-607F-DA77C6967F23",
+    "connected": true,
+    "battery_level": 85,
+    "signal_quality": "good"
+  },
+  "session_id": "session_1756706811",
+  "session_info": {
+    "type": "meditation",
+    "track": "https://open.spotify.com/album/36SQ8Aokc2yMPcRhtmytN3"
+  },
+  "chunks": [
+    {
+      "chunk_id": 1,
+      "filename": "session_1756706811_chunk_001.json",
+      "start_time": "2025-09-01T06:06:51.632311",
+      "end_time": "2025-09-01T06:08:36.632076",
+      "sample_count": 1001,
+      "file_size": 309352
+    },
+    {
+      "chunk_id": 2,
+      "filename": "session_1756706811_chunk_002.json",
+      "start_time": "2025-09-01T06:08:36.632160",
+      "end_time": "2025-09-01T06:10:21.567480",
+      "sample_count": 1001,
+      "file_size": 309209
+    },
+    {
+      "chunk_id": 3,
+      "filename": "session_1756706811_chunk_003.json",
+      "start_time": "2025-09-01T06:10:21.567576",
+      "end_time": "2025-09-01T06:12:07.079014",
+      "sample_count": 1001,
+      "file_size": 309287
+    },
+    {
+      "chunk_id": 4,
+      "filename": "session_1756706811_chunk_004.json",
+      "start_time": "2025-09-01T06:12:07.079112",
+      "end_time": "2025-09-01T06:13:55.444564",
+      "sample_count": 1001,
+      "file_size": 309217
+    },
+    {
+      "chunk_id": 5,
+      "filename": "session_1756706811_chunk_005.json",
+      "start_time": "2025-09-01T06:13:55.444704",
+      "end_time": "2025-09-01T06:15:43.770762",
+      "sample_count": 1001,
+      "file_size": 309284
+    },
+    {
+      "chunk_id": 6,
+      "filename": "session_1756706811_chunk_006.json",
+      "start_time": "2025-09-01T06:15:43.770844",
+      "end_time": "2025-09-01T06:17:14.471047",
+      "sample_count": 837,
+      "file_size": 258603
+    }
+  ],
+  "end_time": "2025-09-01T06:17:14.471209",
+  "total_chunks": 6,
+  "total_samples": 5842,
+  "duration_seconds": 622.839104
+}
