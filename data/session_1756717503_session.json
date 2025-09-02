@@ -8,9 +8,9 @@
     "signal_quality": "good"
   },
   "session_id": "session_1756717503",
-    "session_info": {
-      "type": "psychotherapy"
-    },
+  "session_info": {
+    "type": "psychotherapy"
+  },
   "chunks": [
     {
       "chunk_id": 1,

@@ -1,0 +1,77 @@
+{
+  "start_time": "2025-09-02T06:05:19.490502",
+  "device_info": {
+    "name": "BrainBit",
+    "address": "D7D0944A-160C-A534-607F-DA77C6967F23",
+    "connected": true,
+    "battery_level": 85,
+    "signal_quality": "good"
+  },
+  "session_id": "session_1756793119",
+  "session_info": {
+    "type": "meditation",
+    "track": "https://open.spotify.com/album/36SQ8Aokc2yMPcRhtmytN3"
+  },
+  "chunks": [
+    {
+      "chunk_id": 1,
+      "filename": "session_1756793119_chunk_001.json",
+      "start_time": "2025-09-02T06:05:19.490666",
+      "end_time": "2025-09-02T06:07:04.155364",
+      "sample_count": 1001,
+      "file_size": 309167
+    },
+    {
+      "chunk_id": 2,
+      "filename": "session_1756793119_chunk_002.json",
+      "start_time": "2025-09-02T06:07:04.155515",
+      "end_time": "2025-09-02T06:08:49.037575",
+      "sample_count": 1001,
+      "file_size": 309248
+    },
+    {
+      "chunk_id": 3,
+      "filename": "session_1756793119_chunk_003.json",
+      "start_time": "2025-09-02T06:08:49.037659",
+      "end_time": "2025-09-02T06:10:34.018954",
+      "sample_count": 1001,
+      "file_size": 309279
+    },
+    {
+      "chunk_id": 4,
+      "filename": "session_1756793119_chunk_004.json",
+      "start_time": "2025-09-02T06:10:34.019059",
+      "end_time": "2025-09-02T06:12:21.660580",
+      "sample_count": 1001,
+      "file_size": 309211
+    },
+    {
+      "chunk_id": 5,
+      "filename": "session_1756793119_chunk_005.json",
+      "start_time": "2025-09-02T06:12:21.660723",
+      "end_time": "2025-09-02T06:14:10.108399",
+      "sample_count": 1001,
+      "file_size": 309303
+    },
+    {
+      "chunk_id": 6,
+      "filename": "session_1756793119_chunk_006.json",
+      "start_time": "2025-09-02T06:14:10.108474",
+      "end_time": "2025-09-02T06:15:58.476837",
+      "sample_count": 1001,
+      "file_size": 309257
+    },
+    {
+      "chunk_id": 7,
+      "filename": "session_1756793119_chunk_007.json",
+      "start_time": "2025-09-02T06:15:58.476968",
+      "end_time": "2025-09-02T06:16:36.505227",
+      "sample_count": 352,
+      "file_size": 108888
+    }
+  ],
+  "end_time": "2025-09-02T06:16:36.505376",
+  "total_chunks": 7,
+  "total_samples": 6358,
+  "duration_seconds": 677.014874
+}
